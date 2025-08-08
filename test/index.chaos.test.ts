@@ -1,3 +1,4 @@
+import "@chaosspec/hooks";
 import { createService } from "@chaosspec";
 
 describe("HTTP smoke", () => {

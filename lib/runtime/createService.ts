@@ -55,16 +55,16 @@ export async function ensureChaosHooks(): Promise<"hooks" | "inline"> {
 
   if (insideTest) {
     // Can't add hooks here. Start Toxiproxy now so network is ready and proceed.
-//     if (!warnedOnce) {
-//       warnedOnce = true;
-//       // eslint-disable-next-line no-console
-//       console.warn(
-//         `[ChaosSpec] Running in inline mode for ${testPath} (called inside a test).
-// To enable automatic lifecycle hooks (recommended), add at the top of this file:
-//   import "@chaosspec/autowire";
-// or rename to: *.chaos.test.ts (autowire will attach automatically).`,
-//       );
-//     }
+    if (!warnedOnce) {
+      warnedOnce = true;
+      // eslint-disable-next-line no-console
+      console.warn(
+        `[ChaosSpec] Running in inline mode for ${testPath} (called inside a test).
+To enable automatic lifecycle hooks (recommended), add at the top of this file:
+  import "@chaosspec/hooks";
+or rename to: *.chaos.test.ts (hooks will attach automatically).`,
+      );
+    }
     runtimeState.hooksArmed = true; // mark so we don't repeat this branch
     await toxiproxyManager.start(); // ensure network exists right now
     return "inline";
