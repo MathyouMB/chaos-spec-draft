@@ -1,8 +1,8 @@
-import "@chaosspec/hooks";
+import "@chaosspec/setup";
 import { createService } from "@chaosspec";
 
-describe("HTTP smoke", () => {
-  it("can fetch from an nginx demo container", async () => {
+describe("when HTTP request is made", () => {
+  it("will fetch from an nginx demo container", async () => {
     const testApi = await createService("echo", {
       image: "ealen/echo-server",
       ports: [80],
